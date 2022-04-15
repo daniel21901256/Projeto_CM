@@ -10,4 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_fireList">Fogos Registados</string>
     <string name="menu_reportFire">Reportar Fogo</string>
+    <string name="titulo">titulo</string>
+    <string name="details">detail</string>
+    <string name="detail">detail</string>
 </resources>

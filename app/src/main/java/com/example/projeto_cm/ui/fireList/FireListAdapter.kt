@@ -1,45 +1,49 @@
 package com.example.projeto_cm.ui.fireList
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto_cm.R
 
-class FireListAdapter: RecyclerView.Adapter<FireListAdapter.FireListViewHolder>(){
+class FireListAdapter : RecyclerView.Adapter<FireListAdapter.ViewHolder>() {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    private var titles = arrayOf("Fogo 1","Fogo 2","Fogo 3","Fogo 4","Fogo 5","Fogo 6")
-    private var details = arrayOf("01/02/2022","02/02/2022","03/02/2022","04/02/2022","05/02/2022","06/02/2022")
-    private var images = intArrayOf(R.mipmap.ic_fire,R.mipmap.ic_fire,R.mipmap.ic_fire,R.mipmap.ic_fire,R.mipmap.ic_fire,R.mipmap.ic_fire)
-
-    class FireListViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        var itemImage: ImageView
-        var itemTitle: TextView
+        var itemTitulo: TextView
         var itemDetail: TextView
 
         init {
-            itemImage = itemView.findViewById(R.id.item_image)
-            itemTitle = itemView.findViewById(R.id.item_title)
+            itemTitulo = itemView.findViewById(R.id.item_title)
             itemDetail = itemView.findViewById(R.id.item_detail)
+
         }
     }
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FireListViewHolder {
-        val v = LayoutInflater.from(parent.context).inflate(R.layout.fragment_fire_list,parent,false)
-        return FireListViewHolder(v)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
+        val v = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.fire_list_layout, viewGroup, false)
+        return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: FireListViewHolder, position: Int) {
-        holder.itemTitle.text = titles[position]
-        holder.itemDetail.text = details[position]
-        holder.itemImage.setImageResource(images[position])
+    override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
+        viewHolder.itemTitulo.text = titulo[i]
+        viewHolder.itemDetail.text = detail[i]
+
     }
 
-    override fun getItemCount(): Int{
-        return titles.size
+    override fun getItemCount(): Int {
+        return titulo.size
     }
+    private val titulo = arrayOf("d116df5",
+        "36ffc75", "f5cfe78", "5b87628",
+        "db8d14e", "9913dc4", "e120f96",
+        "466251b")
+
+    private val detail = arrayOf("Kekayaan", "Teknologi",
+        "Keluarga", "Bisnis",
+        "Keluarga", "Hutang",
+        "Teknologi", "Pidana")
+
 
 }

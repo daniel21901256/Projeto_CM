@@ -4,35 +4,33 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projeto_cm.R
-import com.example.projeto_cm.databinding.FragmentFireListBinding
 
 class FireListFragment : Fragment() {
 
-    private var _binding: FragmentFireListBinding? = null
+    private var layoutManager: RecyclerView.LayoutManager? = null
+    private var adapter: RecyclerView.Adapter<FireListAdapter.ViewHolder>? = null
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View {
-
-        var view: View = inflater.inflate(R.layout.fragment_fire_list,container,false)
-        //var recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
-        //recyclerView.layoutManager = LinearLayoutManager(this.context)
-        //recyclerView.adapter = FireListAdapter()
-        return view
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_fire_list, container, false)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(itemView: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(itemView, savedInstanceState)
+        var recyclerView: RecyclerView = itemView.findViewById(R.id.recyclerView)
+        recyclerView.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+            adapter = FireListAdapter()
+        }
     }
-
 }
